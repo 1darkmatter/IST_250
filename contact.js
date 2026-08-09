@@ -1,22 +1,12 @@
-document.getElementById("year").textContent =
- new Date().getFullYear();
-
-document.getElementById("contact-form").onsubmit =
- function(event) {
- event.preventDefault();
-
- document.getElementById("form-message")
- .classList.remove("d-none");
- };
-
 let totalHours = 0;
 
 function sumHours() {
  totalHours = 0;
+
  let hours = prompt("Enter hours or 0 to stop:");
 
  while (hours != 0 && hours != null) {
- totalHours += Number(hours);
+ totalHours = totalHours + Number(hours);
  hours = prompt("Enter hours or 0 to stop:");
  }
 
@@ -30,6 +20,12 @@ function calcQuote() {
 
  let retainer =
  document.getElementById("monthly-retainer").value;
+
+ if (rate == "" || retainer == "") {
+ document.getElementById("quote-result").textContent =
+ "Enter both costs first.";
+ return;
+ }
 
  let projectCost = totalHours * rate;
  let answer = "The monthly retainer is cheaper.";
